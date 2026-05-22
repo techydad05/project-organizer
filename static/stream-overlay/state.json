@@ -1,0 +1,33 @@
+{
+  "currentProject": "Project Organizer",
+  "viewers": 0,
+  "followers": 0,
+  "ticker": [
+    {
+      "tag": "Chat",
+      "text": "MaineVoter42: Can ranked-choice voting actually work in a rural state like Maine?"
+    },
+    {
+      "tag": "Dumb",
+      "text": "FlatEarthFTW: Why dont we just nuke the moon to fix climate change bro"
+    }
+  ],
+  "alert": null,
+  "cohost": {
+    "username": "MaineVoter42",
+    "comment": "Can ranked-choice voting actually work in a rural state like Maine?",
+    "dialogue": "@MaineVoter42 just said: \"Can ranked-choice voting actually work in a rural state like Maine?\" — Ivan, that's worth talking about.",
+    "timestamp": 1779463879286,
+    "audioUrl": "/stream-overlay/audio/cohost_1779463879201.mp3"
+  },
+  "cohostVoice": {
+    "id": "pNInz6obpgDQGcFmaJgB",
+    "name": "Warm Narrator"
+  },
+  "dumbComment": {
+    "username": "FlatEarthFTW",
+    "comment": "Why dont we just nuke the moon to fix climate change bro",
+    "timestamp": 1779463880323,
+    "audioUrl": "/stream-overlay/audio/dumb_1779463880316.mp3"
+  }
+}
