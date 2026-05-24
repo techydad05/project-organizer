@@ -1,6 +1,6 @@
 import { fail } from '@sveltejs/kit';
 import type { Actions, PageServerLoad } from './$types';
-import { loadProjects, addProject, moveProject, editProject, deleteProject, getNextId } from '$lib/data';
+import { loadProjects, addProject, moveProject, editProject, deleteProject, importFromMarkdown, exportToMarkdown } from '$lib/data';
 import type { Project, ProjectStatus } from '$lib/types';
 
 export const load: PageServerLoad = async () => {
@@ -15,19 +15,16 @@ export const actions: Actions = {
     const reason = form.get('reason')?.toString().trim() || '';
     const notes = form.get('notes')?.toString().trim() || '';
     const url = form.get('url')?.toString().trim() || '';
+    const tagsStr = form.get('tags')?.toString().trim() || '';
+    const tags = tagsStr ? tagsStr.split(',').map(t => t.trim()).filter(Boolean) : [];
+    const status = (form.get('status')?.toString() || 'idea') as ProjectStatus;
 
     if (!name) {
       return fail(400, { error: 'Project name is required' });
     }
 
     try {
-      const projects = await addProject({
-        name,
-        reason,
-        notes,
-        url: url || undefined,
-        status: 'current',
-      });
+      const projects = await addProject({ name, reason, notes, url: url || undefined, tags, status });
       return { success: true, projects };
     } catch (e) {
       return fail(500, { error: 'Failed to add project' });
@@ -59,13 +56,15 @@ export const actions: Actions = {
     const reason = form.get('reason')?.toString().trim() || '';
     const notes = form.get('notes')?.toString().trim() || '';
     const url = form.get('url')?.toString().trim() || '';
+    const tagsStr = form.get('tags')?.toString().trim() || '';
+    const tags = tagsStr ? tagsStr.split(',').map(t => t.trim()).filter(Boolean) : [];
 
     if (!id || !name) {
       return fail(400, { error: 'Missing id or name' });
     }
 
     try {
-      const projects = await editProject(id, { name, reason, notes, url: url || undefined });
+      const projects = await editProject(id, { name, reason, notes, url: url || undefined, tags });
       return { success: true, projects };
     } catch (e) {
       return fail(500, { error: 'Failed to edit project' });
@@ -86,5 +85,27 @@ export const actions: Actions = {
     } catch (e) {
       return fail(500, { error: 'Failed to delete project' });
     }
-  }
+  },
+
+  importMd: async () => {
+    try {
+      const projects = await importFromMarkdown();
+      return { success: true, projects, message: `Imported ${projects.length} projects from markdown` };
+    } catch (e) {
+      return fail(500, { error: 'Failed to import from markdown' });
+    }
+  },
+
+  exportMd: async ({ request }) => {
+    try {
+      const form = await request.formData();
+      const projectsJson = form.get('projects')?.toString();
+      if (!projectsJson) return fail(400, { error: 'No projects data' });
+      const projects: Project[] = JSON.parse(projectsJson);
+      const md = await exportToMarkdown(projects);
+      return { success: true, message: 'Exported to markdown', markdown: md };
+    } catch (e) {
+      return fail(500, { error: 'Failed to export to markdown' });
+    }
+  },
 };
