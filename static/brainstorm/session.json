@@ -1,0 +1,25 @@
+{
+  "title": "Brainstorm: Scraping Hate",
+  "date": "2026-05-25",
+  "updated": "2026-05-25T00:00:00Z",
+  "sections": [
+    {
+      "id": "concept",
+      "heading": "The Core Idea",
+      "body": "Distributed hate speech archival by city. Systematically scrape and surface hate speech, disinformation, and far-right organizing — not just to document it, but to make it actionable for progressive candidates, journalists, and activists.",
+      "timestamp": "2026-05-25T00:00:00Z"
+    },
+    {
+      "id": "approach",
+      "heading": "Two-pronged Collection Approach",
+      "body": "**Platforms with APIs (Reddit, X, Telegram)** — traditional scraping via their APIs where available.\n\n**Locked-down platforms (Facebook, Nextdoor)** — browser-based vision agent approach using Owl Alpha (free on OpenRouter). The agent logs in, browses like a human, screenshots posts, feeds them to a vision model for classification.",
+      "timestamp": "2026-05-25T00:00:00Z"
+    },
+    {
+      "id": "lenses",
+      "heading": "Lenses We're Exploring",
+      "body": "**Who's the audience?**\n- Progressive candidates & campaigns → alert system + rapid response\n- Journalists → searchable evidence database + story leads\n- Activists & orgs → tracking dashboards over time\n- General public → transparency map / accountability\n\n**Product shapes considered:**\n- **City Watch** — pick one city, scrape everything, produce weekly reports\n- **Narrative Tracker** — trace a hate narrative from fringe to mainstream (4chan → X → city council)\n- **Candidate Shield** — watch what's said about progressive candidates in their district\n- **Public Map** — geographic heatmap of hate incidents, click a dot → see evidence",
+      "timestamp": "2026-05-25T00:00:00Z"
+    }
+  ]
+}
