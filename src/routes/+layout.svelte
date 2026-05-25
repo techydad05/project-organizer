@@ -6,7 +6,6 @@
 
   const navItems = [
     { href: '/', label: 'Projects', icon: '📋' },
-    { href: '/brainstorm', label: 'Brainstorm', icon: '🧠' },
     { href: '/geography-of-power', label: 'Geo of Power', icon: '🗺️' },
     { href: '/stream-control', label: 'Stream', icon: '🎙️' },
   ];

@@ -4,6 +4,7 @@
   import { COLUMNS } from '$lib/types';
   import { enhance } from '$app/forms';
   import { invalidateAll } from '$app/navigation';
+  import { goto } from '$app/navigation';
   import AddModal from '$lib/AddModal.svelte';
 
   let { data }: { data: PageData } = $props();
@@ -56,6 +57,15 @@
 
   function openEdit(p: Project) {
     editingProject = { ...p };
+  }
+
+  function slugify(name: string): string {
+    return name.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
+  }
+
+  function openProject(e: MouseEvent, p: Project) {
+    e.stopPropagation();
+    goto(`/project/${slugify(p.name)}`);
   }
 
   function openLink(url: string, e: MouseEvent) {
@@ -186,7 +196,7 @@
                     ondragstart={(e) => {
                       e.dataTransfer?.setData('text/plain', project.id);
                     }}
-                    onclick={() => openEdit(project)}
+                    onclick={(e) => openProject(e, project)}
                   >
                     <div class="card-top">
                       <strong>{project.name}</strong>
@@ -250,7 +260,7 @@
           <tbody>
             {#each COLUMNS.filter(c => c.key !== 'abandoned' || showAbandoned) as col}
               {#each projectsForColumn(col.key) as project (project.id)}
-                <tr onclick={() => openEdit(project)} class="status-row" data-status={col.key}>
+                <tr onclick={(e) => openProject(e, project)} class="status-row" data-status={col.key}>
                   <td>
                     <strong>{project.name}</strong>
                     {#if project.notes}

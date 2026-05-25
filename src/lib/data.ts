@@ -102,6 +102,15 @@ export async function loadProjects(): Promise<Project[]> {
   return result[0].values.map(row => rowToProject(row));
 }
 
+export function slugify(name: string): string {
+  return name.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
+}
+
+export async function getProjectBySlug(slug: string): Promise<Project | null> {
+  const projects = await loadProjects();
+  return projects.find(p => slugify(p.name) === slug) || null;
+}
+
 export async function saveProjects(projects: Project[]): Promise<void> {
   const db = await getDb();
   db.run('DELETE FROM projects');

@@ -1,0 +1,29 @@
+{
+  "sections": [
+    {
+      "heading": "The Core Idea",
+      "body": "Distributed hate speech archival by city. Systematically scrape and surface hate speech, disinformation, and far-right organizing — not just to document it, but to make it actionable for progressive candidates, journalists, and activists.",
+      "timestamp": "2026-05-25T00:00:00Z"
+    },
+    {
+      "heading": "Two-pronged Collection Approach",
+      "body": "**Platforms with APIs (Reddit, X, Telegram)** — traditional scraping via their APIs where available.\n\n**Locked-down platforms (Facebook, Nextdoor)** — browser-based vision agent approach using Owl Alpha (free on OpenRouter). The agent logs in, browses like a human, screenshots posts, feeds them to a vision model for classification.",
+      "timestamp": "2026-05-25T00:00:00Z"
+    },
+    {
+      "heading": "Audience Lenses Explored",
+      "body": "**Progressive candidates & campaigns** — alert system + rapid response templates. \"3 new anti-trans posts in your district today — here's how to respond.\"\n\n**Journalists** — searchable evidence database + story leads. \"These accounts are brigading city council comments across swing states.\"\n\n**Activists & orgs** — tracking dashboards over time. \"The school board takeover narrative peaked 3 weeks before the election.\"\n\n**General public** — transparency-as-accountability map.",
+      "timestamp": "2026-05-25T00:00:00Z"
+    },
+    {
+      "heading": "Product Shapes Considered",
+      "body": "**City Watch** — pick one city, scrape every platform, produce weekly reports. First report IS the demo.\n\n**Narrative Tracker** — trace a hate narrative from fringe to mainstream (4chan → X → city council candidate's speech). This is genuinely novel.\n\n**Candidate Shield** — watch what's said about progressive candidates in their district. Real-time alerts + counter-narrative auto-generation.\n\n**Public Map** — geographic heatmap of hate incidents by city. Click a dot → see the evidence. Immutable, timestamped, linked. Most viral potential.",
+      "timestamp": "2026-05-25T00:00:00Z"
+    },
+    {
+      "heading": "Tech Architecture: Two-Tier Collection",
+      "body": "**Tier 1 — API scraping:**\n- Reddit via PRAW (public API, easy)\n- X via API v2 (rate-limited on free tier)\n- Telegram via Telethon (public channel search)\n\n**Tier 2 — Browser vision agent:**\n- Facebook + Nextdoor: Hermes browser logs in as human\n- Screenshots each post → feeds to Owl Alpha on OpenRouter\n- Prompt: \"Does this post contain hate speech, dog whistles, disinformation, or calls to organize against marginalized groups?\"\n- Results saved to DB with screenshot, URL, timestamp\n\n**Constraints:**\n- Slow (~15-30s per post, 50 posts = 15-25 min per platform)\n- Facebook sessions invalidate often → need burner account\n- Owl Alpha is free now but won't be forever\n- One city at a time at this scale",
+      "timestamp": "2026-05-25T00:00:00Z"
+    }
+  ]
+}
