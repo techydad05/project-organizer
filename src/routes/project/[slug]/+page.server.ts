@@ -15,13 +15,19 @@ export const load: PageServerLoad = async ({ params }) => {
   const col = COLUMNS.find(c => c.key === project.status);
   const statusInfo = col ? { label: col.label, color: col.color, icon: col.icon } : { label: project.status, color: '#868e96', icon: '○' };
 
-  // Load brainstorming data from static file
-  const brainstormPath = path.resolve('static', 'brainstorm', `${params.slug}.json`);
+  // Load brainstorming data from built static file
+  const brainstormPath = path.resolve(process.cwd(), 'build', 'client', 'brainstorm', `${params.slug}.json`);
+  // Fallback for local dev
+  const brainstormDevPath = path.resolve('static', 'brainstorm', `${params.slug}.json`);
   let brainstorm: { sections: Array<{ heading: string; body: string; timestamp: string }> } | null = null;
   
-  if (fs.existsSync(brainstormPath)) {
+  const tryPath = fs.existsSync(brainstormPath) ? brainstormPath :
+                  fs.existsSync(brainstormDevPath) ? brainstormDevPath :
+                  null;
+  
+  if (tryPath) {
     try {
-      const raw = fs.readFileSync(brainstormPath, 'utf-8');
+      const raw = fs.readFileSync(tryPath, 'utf-8');
       brainstorm = JSON.parse(raw);
     } catch (e) {
       // Ignore parse errors, just return null
