@@ -1,9 +1,14 @@
 {
   "sections": [
     {
-      "heading": "The Core Idea",
-      "body": "Distributed hate speech archival by city. Systematically scrape and surface hate speech, disinformation, and far-right organizing — not just to document it, but to make it actionable for progressive candidates, journalists, and activists.",
-      "timestamp": "2026-05-25T00:00:00Z"
+      "heading": "The Core Mission",
+      "body": "Archive hateful/far-right posts and comments from local communities so there is an immutable record. After the Civil War, there was no social media to scrape. Now there is. We can know who the people in our world are. No plausible deniability later — 'they can't say they weren't.'",
+      "timestamp": "2026-05-26T00:00:00Z"
+    },
+    {
+      "heading": "Why This Matters Now",
+      "body": "Social media captures what ordinary people say and do in real-time. Every racist Nextdoor post, every homophobic Facebook comment, every 'go back where you came from' on a local subreddit — it's all evidence of who people were when they thought no one was keeping track. After the next civil conflict, there is no erasing this record.",
+      "timestamp": "2026-05-26T00:00:00Z"
     },
     {
       "heading": "Two-pronged Collection Approach",
@@ -27,7 +32,7 @@
     },
     {
       "heading": "Pilot City: Clearwater, FL",
-      "body": "**Why Clearwater:** Pinellas County swing district, active local politics, home to Scientology HQ (unique angle). Target for **City Watch** approach — one metro area, all platforms.\n\n**Target subreddits:**\n- r/ClearwaterFl — local sub, low volume, watch for school board / city council threads\n- r/tampa — regional, higher volume, spills over often\n- r/florida — state-level, active hate speech around FL politics\n- r/StPetersburgFL — adjacent city, progressive vs conservative dynamics\n\n**Reddit API tier (Tier 1)** — public JSON API works but Reddit rate-limits hard on keyword search. Better approach: web search for actual incident reports + pull from there.\n\n**Next:** X/Twitter search, Nextdoor browser agent (Tier 2), cron job for weekly Reddit monitoring, city council meeting transcript scraping.\n\n**Hate incidents found so far (Clearwater / Pinellas):**\n1. Cheryl Bradley (70) — racist threats against Black pastor on Instagram — arrested\n2. Two teens — racist/antisemitic/homophobic graffiti on cars — arrested\n3. Largo firefighter — anti-LGBTQ+ slurs at No Kings rally — under investigation\n4. Holocaust Museum (St. Pete) — swastikas + 'Jews are guilty' — under investigation\n5. Book bans — 38 books removed from Pinellas schools without board vote — ongoing\n6. Moms for Liberty candidates — 3 lost Pinellas School Board races — resolved\n7. Scientology land grab — Save the Garden petitions invalidated — ongoing\n8. North Greenwood Armory sale — Black community excluded from decision — ongoing\n9. USF Fishback event — Jewish students harassed with antisemitic slurs — ongoing\n\n**Pinellas hate crimes (2023 FL AG report):** 20 reported, most Largo PD (9) and Clearwater PD (5). Actual number likely much higher.",
+      "body": "**Why Clearwater:** Pinellas County swing district, active local politics, home to Scientology HQ (unique angle). Target for **City Watch** approach — one metro area, all platforms.\n\n**Target subreddits:**\n- r/ClearwaterFl — local sub, low volume, watch for school board / city council threads\n- r/tampa — regional, higher volume, spills over often\n- r/florida — state-level, active hate speech around FL politics\n- r/StPetersburgFL — adjacent city, progressive vs conservative dynamics\n\n**Reddit status:** Public JSON API rate-limits hard from WSL. Need PRAW with Reddit API app credentials to get 100 req/min.\n\n**Collected resident comments:** 19 comments from 4 high-engagement threads (Scientology, city council, local politics). Saved to ~/scraping-hade/clearwater-reddit-posts.json.\n\n**Incident evidence:** 9 verified hate incidents from local news. Saved to ~/scraping-hate/clearwater-findings.json.\n\n**Next:** Install PRAW for proper Reddit API access, X/Twitter search via xurl, set up cron job for weekly snapshots.",
       "timestamp": "2026-05-26T00:00:00Z"
     }
   ]
